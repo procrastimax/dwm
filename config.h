@@ -65,7 +65,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-b", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *term_floatcmd[]  = { "st", "-c st_float", "-g 100x30+200+200",  NULL };
+static const char *term_floatcmd[]  = { "st", "-c", "st_float", "-g", "100x40+300+300",  NULL };
 static const char *firefoxcmd[]  = { "firefox", NULL };
 static const char *keepasscmd[]  = { "keepassxc", NULL };
 
