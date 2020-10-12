@@ -28,6 +28,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "st_float", NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -57,11 +58,17 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-b", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *term_floatcmd[]  = { "st", "-c st_float", "-g 100x30+200+200",  NULL };
+static const char *firefoxcmd[]  = { "firefox", NULL };
+static const char *keepasscmd[]  = { "keepassxc", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = firefoxcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = term_floatcmd } },
+	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = keepasscmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
