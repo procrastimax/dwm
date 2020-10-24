@@ -77,9 +77,14 @@ static Key keys[] = {
 	{ 0,                            0x1008ff13,spawn,          {.v = turn_up_cmd} },
 	{ 0,                            0x1008ff11,spawn,          {.v = turn_down_cmd } },
 	{ 0,                            0x1008ff12,spawn,          {.v = turn_on_off_cmd } },
+    // update ALSA dwmblock
 	{ 0,                            0x1008ff11,spawn,          SHCMD("kill -44 $(pidof dwmblocks)") },
 	{ 0,                            0x1008ff12,spawn,          SHCMD("kill -44 $(pidof dwmblocks)") },
 	{ 0,                            0x1008ff13,spawn,          SHCMD("kill -44 $(pidof dwmblocks)") },
+    // update backlight dwmblock
+	{ 0,                            0x1008ff03,spawn,          SHCMD("sleep 0.1 && kill -45 $(pidof dwmblocks)") },
+	{ 0,                            0x1008ff02,spawn,          SHCMD("sleep 0.1 && kill -45 $(pidof dwmblocks)") },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
