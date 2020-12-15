@@ -357,9 +357,15 @@ applyrules(Client *c)
 			c->iscentered = r->iscentered;
 			c->isfloating = r->isfloating;
 			c->tags |= r->tags;
-			for (m = mons; m && m->num != r->monitor; m = m->next);
-			if (m)
-				c->mon = m;
+
+            /* if monitor is '-1' just select curent active monitor */
+            if (!r->monitor){
+                c->mon = selmon;
+            }else {
+              for (m = mons; m && m->num != r->monitor; m = m->next);
+              if (m)
+                c->mon = m;
+            }
 		}
 	}
 	if (ch.res_class)
@@ -1217,7 +1223,6 @@ manage(Window w, XWindowAttributes *wa)
 		c->x = c->mon->mx + (c->mon->mw - WIDTH(c)) / 2;
 		c->y = c->mon->my + (c->mon->mh - HEIGHT(c)) / 2;
 	}
-
 	XSelectInput(dpy, w, EnterWindowMask|FocusChangeMask|PropertyChangeMask|StructureNotifyMask);
 	grabbuttons(c, 0);
 	if (!c->isfloating)
